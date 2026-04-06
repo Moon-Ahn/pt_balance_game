@@ -8,14 +8,14 @@ const App = () => {
 
   const COMMUNITY_URL = "https://www.instagram.com/the.pt.map?igsh=MWIwOTV2OTY1Y2loaw==";
 
-  // 카카오 광고 스크립트 로드
+  // 카카오 광고 스크립트 로드 및 갱신
   useEffect(() => {
     const script = document.createElement("script");
     script.type = "text/javascript";
     script.src = "//t1.daumcdn.net/kas/static/ba.min.js";
     script.async = true;
     document.body.appendChild(script);
-  }, [step]); // 단계가 바뀔 때마다 광고를 다시 로드하도록 설정
+  }, [step, currentIdx]); // 화면이 바뀌거나 문항이 바뀔 때 광고 호출 시도
 
   const questions = [
     { id: 1, title: "퇴근 조건", type: "PE", optionA: { text: "🏃‍♂️ 평생 점심 없이\n1시간 조기 퇴근", value: 'E' }, optionB: { text: "🍱 점심 2시간 보장받고\n1시간 야근", value: 'P' } },
@@ -50,15 +50,17 @@ const App = () => {
     <div className="min-h-screen bg-slate-100 flex items-center justify-center p-4">
       <style>{`@import url('https://fonts.googleapis.com/css2?family=Jua&display=swap'); * { font-family: 'Jua', sans-serif !important; word-break: keep-all; }`}</style>
       <div className="w-full max-w-md bg-white rounded-3xl shadow-2xl overflow-hidden border border-slate-200 min-h-[600px] flex flex-col relative">
+
+        {/* 시작 화면 광고 삽입 */}
         {step === 'start' && (
           <div className="flex-1 flex flex-col items-center justify-center p-8 text-center bg-gradient-to-b from-sky-50 to-white">
             <div className="w-24 h-24 bg-indigo-600 rounded-[2rem] rotate-6 flex items-center justify-center mb-8 shadow-xl shadow-indigo-200"><Activity className="w-12 h-12 text-white -rotate-6" /></div>
             <h1 className="text-3xl font-black mb-3 text-slate-900 leading-tight">물리치료사<br/>성향 밸런스 게임</h1>
-            <p className="text-slate-500 mb-10 font-medium">나의 임상 스타일은?<br/><span className="text-indigo-700 text-sm font-bold tracking-tight uppercase">PT MAP BALANCE GAME</span></p>
-            <button onClick={() => setStep('quiz')} className="w-full py-5 bg-indigo-700 text-white rounded-2xl font-black text-xl shadow-lg active:scale-95 transition-all">게임 시작하기</button>
+            <p className="text-slate-500 mb-8 font-medium">나의 임상 스타일은?<br/><span className="text-indigo-700 text-sm font-bold tracking-tight uppercase">PT MAP BALANCE GAME</span></p>
+            <button onClick={() => setStep('quiz')} className="w-full py-5 bg-indigo-700 text-white rounded-2xl font-black text-xl shadow-lg active:scale-95 transition-all mb-8">게임 시작하기</button>
 
-            {/* 시작 화면 광고 영역 */}
-            <div className="mt-8 flex justify-center overflow-hidden">
+            {/* 시작 페이지 광고 */}
+            <div className="flex justify-center overflow-hidden w-full">
               <ins className="kakao_ad_area" style={{ display: 'none' }}
                 data-ad-unit="DAN-sPwiKOrdKcuE7clt"
                 data-ad-width="320"
@@ -69,6 +71,7 @@ const App = () => {
           </div>
         )}
 
+        {/* 퀴즈 화면 광고 삽입 */}
         {step === 'quiz' && (
           <div className="flex-1 flex flex-col p-4 bg-slate-50 relative">
             <div className="mb-4 text-center px-2">
@@ -80,9 +83,18 @@ const App = () => {
               <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 z-20 w-16 h-16 bg-white rounded-full flex items-center justify-center shadow-xl border-4 border-slate-50 font-black italic text-2xl text-slate-800">VS</div>
               <button onClick={() => handleAnswer(questions[currentIdx].optionB.value)} className="flex-1 bg-indigo-600 hover:bg-indigo-700 rounded-[2rem] p-6 flex items-center justify-center border-2 border-transparent hover:border-indigo-500 transition-all active:scale-[0.98] shadow-sm"><span className="text-2xl font-black text-white text-center whitespace-pre-line leading-tight">{questions[currentIdx].optionB.text}</span></button>
             </div>
+
+            {/* 퀴즈 페이지 하단 광고 */}
+            <div className="flex justify-center overflow-hidden py-2">
+              <ins className="kakao_ad_area" style={{ display: 'none' }}
+                data-ad-unit="DAN-sPwiKOrdKcuE7clt"
+                data-ad-width="320"
+                data-ad-height="50"></ins>
+            </div>
           </div>
         )}
 
+        {/* 결과 화면 광고 삽입 */}
         {step === 'result' && (
           <div className="flex-1 flex flex-col p-6 overflow-y-auto bg-white">
             <div className="text-center mt-4 mb-6"><div className="inline-block px-4 py-1 bg-indigo-100 text-indigo-700 rounded-full text-xs font-black mb-4 uppercase tracking-widest">PT MAP 진단결과 🔍</div><h2 className="text-4xl font-black text-slate-900 break-keep">{resultData[getResult()].title}</h2></div>
@@ -93,7 +105,7 @@ const App = () => {
               <p className="text-slate-700 leading-relaxed text-center font-bold text-lg px-2">{resultData[getResult()].desc}</p>
             </div>
 
-            {/* 결과 화면 광고 영역 */}
+            {/* 결과 페이지 광고 */}
             <div className="flex justify-center mb-10 overflow-hidden">
               <ins className="kakao_ad_area" style={{ display: 'none' }}
                 data-ad-unit="DAN-sPwiKOrdKcuE7clt"
@@ -108,7 +120,7 @@ const App = () => {
 
             <div className="bg-slate-900 rounded-[36px] p-10 text-center shadow-2xl border border-slate-800">
               <p className="text-indigo-400 text-lg font-black mb-4 tracking-widest uppercase italic">💡 NEXT STEP</p>
-              <div className="text-slate-200 text-base mb-8 leading-relaxed font-medium">놓치면 손해인 물리치료사들의 로드맵!<br /><span className="text-white text-3xl font-black block mt-3 mb-1 tracking-tighter italic">PT MAP</span><span className="text-slate-400 text-sm font-bold tracking-tight uppercase">에서 당신의 커리어를 완성하세요.</span></div>
+              <div className="text-slate-200 text-base mb-8 leading-relaxed font-medium">놓치면 손해인 물리치료사들의 로드맵!<br /><span className="text-white text-3xl font-black block mt-3 mb-1 tracking-tighter italic font-serif leading-none">PT MAP</span><span className="text-slate-400 text-sm font-bold tracking-tight uppercase">에서 당신의 커리어를 완성하세요.</span></div>
               <button onClick={() => window.open(COMMUNITY_URL, '_blank')} className="w-full py-5 bg-indigo-600 text-white rounded-[20px] font-black text-xl hover:bg-indigo-500 transition-all active:scale-95 shadow-[0_10px_30px_rgba(79,70,229,0.5)] flex items-center justify-center gap-2">커뮤니티 바로가기</button>
             </div>
           </div>
