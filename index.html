@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no, viewport-fit=cover" />
+    <title>물리치료사 성향 밸런스 게임 | PT Balance Game</title>
+
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Jua&display=swap" rel="stylesheet">
+
+    <style>
+      /* 전체 폰트 적용 및 터치 최적화 */
+      * {
+        font-family: 'Jua', sans-serif !important;
+        word-break: keep-all; /* 단어 단위 줄바꿈으로 더 깔끔하게 */
+      }
+
+      body {
+        -webkit-tap-highlight-color: transparent;
+        user-select: none;
+        -webkit-user-select: none;
+        background-color: #f1f5f9; /* slate-100 */
+      }
+
+      /* 모바일에서 버튼 클릭 시 생기는 파란 하이라이트 제거 */
+      button {
+        outline: none;
+      }
+
+      /* 스크롤바 숨기기 (선택 사항) */
+      ::-webkit-scrollbar {
+        display: none;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
+  </body>
+</html>
