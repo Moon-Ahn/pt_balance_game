@@ -60,13 +60,15 @@ const App = () => {
             <button onClick={() => setStep('quiz')} className="w-full py-5 bg-indigo-700 text-white rounded-2xl font-black text-xl shadow-lg active:scale-95 transition-all mb-8">게임 시작하기</button>
 
             {/* 시작 페이지 광고 */}
-            <div className="flex justify-center overflow-hidden w-full">
-              <ins className="kakao_ad_area" style={{ display: 'none' }}
-                data-ad-unit="DAN-sPwiKOrdKcuE7clt"
-                data-ad-width="320"
-                data-ad-height="50"></ins>
+            <div className="flex justify-center items-center w-full overflow-hidden mt-4 mb-2">
+              <div className="inline-block min-w-[320px] max-w-full">
+                <ins className="kakao_ad_area"
+                     style={{ display: 'none', margin: '0 auto' }}
+                     data-ad-unit="DAN-sPwiKOrdKcuE7clt"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
+              </div>
             </div>
-
             <p className="mt-6 text-sm text-slate-400 font-bold uppercase tracking-widest">10 Questions | @the.pt.map</p>
           </div>
         )}
@@ -85,11 +87,14 @@ const App = () => {
             </div>
 
             {/* 퀴즈 페이지 하단 광고 */}
-            <div className="flex justify-center overflow-hidden py-2">
-              <ins className="kakao_ad_area" style={{ display: 'none' }}
-                data-ad-unit="DAN-sPwiKOrdKcuE7clt"
-                data-ad-width="320"
-                data-ad-height="50"></ins>
+            <div className="flex justify-center items-center w-full overflow-hidden py-2 mt-auto" style={{ minHeight: '60px' }}>
+              <div className="inline-block min-w-[320px] max-w-full">
+                <ins className="kakao_ad_area"
+                     style={{ display: 'none', margin: '0 auto' }}
+                     data-ad-unit="DAN-sPwiKOrdKcuE7clt"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
+              </div>
             </div>
           </div>
         )}
@@ -106,11 +111,14 @@ const App = () => {
             </div>
 
             {/* 결과 페이지 광고 */}
-            <div className="flex justify-center mb-10 overflow-hidden">
-              <ins className="kakao_ad_area" style={{ display: 'none' }}
-                data-ad-unit="DAN-sPwiKOrdKcuE7clt"
-                data-ad-width="320"
-                data-ad-height="50"></ins>
+            <div className="flex justify-center items-center w-full overflow-hidden mb-10">
+              <div className="inline-block min-w-[320px] max-w-full">
+                <ins className="kakao_ad_area"
+                     style={{ display: 'none', margin: '0 auto' }}
+                     data-ad-unit="DAN-sPwiKOrdKcuE7clt"
+                     data-ad-width="320"
+                     data-ad-height="50"></ins>
+              </div>
             </div>
 
             <div className="space-y-4 mb-10">
